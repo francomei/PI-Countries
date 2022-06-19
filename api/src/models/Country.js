@@ -15,11 +15,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-    imgBandera: {
+    imgFlag: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    continente: {
+    continent: {
       type: DataTypes.STRING,
       allowNull: false,
     },

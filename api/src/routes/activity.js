@@ -1,10 +1,10 @@
 const { Router } = require("express");
 const { Sequelize } = require("sequelize");
 const { Activity, Country } = require("../db");
-const router = require("./country");
+const router = Router();
 
-router.post("/", (req, res) => {
-
+router.post("/", async (req, res) => {
+    const {countries, name, dificulty, duration, season} = req.body;
 })
 
 module.exports = router;
