@@ -59,6 +59,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
+
   const { id } = req.params;
   const allCountries = await getAllCountries();
   if(id) {
@@ -84,6 +85,7 @@ router.get("/:id", async (req, res) => {
   // } catch (error) {
   //   res.send({ msg: error.message });
   // }
+
 });
 
 module.exports = router;
