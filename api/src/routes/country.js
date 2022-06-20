@@ -5,17 +5,17 @@ const router = Router();
 
 const getCountries = async () => {
   const apiUrl = await axios.get("https://restcountries.com/v3/all");
-  const apiInfo = await apiUrl.data.map(e => {
+  const apiInfo = await apiUrl.data.map((e) => {
     return {
       name: e.name.common,
       id: e.cca3,
-      imgFlag: e.flags[1],
-      continent: e.continent[0],
-      capital: e.capital[0],
-      subRegion: e.subRegion,
+      flag: e.flags[1],
+      continent: e.continents,
+      capital: e.capital,
+      subregion: e.subregion,
       area: e.area,
-      poblacion: e.poblacion,
-    }
+      population: e.population,
+    };
   });
   return apiInfo;
 };
@@ -26,38 +26,64 @@ const getDbInfo = async () => {
       model: Activity,
       attributes: ["name", "difficulty", "duration", "season"],
       through: {
-        attributes: []
-      }
-    }
-  })
-}
+        attributes: [],
+      },
+    },
+  });
+};
+
+const getAllCountries = async () => {
+  const apiInfo = await getCountries();
+  const dbInfo = await getDbInfo();
+  const result = apiInfo.concat(dbInfo);
+  return result;
+};
 
 router.get("/", async (req, res) => {
   const { name } = req.query;
-  if (!name) return res.status(404).json("No existe el pais");
+  const allCountries = await getCountries();
   try {
-    const nameCountry = await Country.findAll(name.toLowerCase(),{
-      include: {
-        model: Activity,
-      },
-    });
-    res.json(nameCountry);
+    if (name) {
+      const nameCountry = await allCountries.filter((e) =>
+        e.name.toLowerCase().includes(name.toLowerCase())
+      );
+      nameCountry.length
+        ? res.status(200).json(nameCountry)
+        : res.status(404).json("No existe el pais");
+    } else {
+      res.json(allCountries);
+    }
   } catch (error) {
     res.send({ msg: error.message });
   }
 });
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  try {
-    const country = await Country.findByPk(id.toUpperCase(), {
-      include: {
-        model: Activity,
-      },
-    });
-    return res.json(country);
-  } catch (error) {
-    res.send({ msg: error.message });
+  const allCountries = await getAllCountries();
+  if(id) {
+    let countryId = await allCountries.filter(e => e.id.toUpperCase() == id.toUpperCase())
+    
+    countryId.length ?
+    res.json(countryId) :
+    res.json("no existe")
   }
+
+  // const { id } = req.params;
+  // try {
+  //   const country = await Country.findByPk(id, {
+  //     include: {
+  //       model: Activity  
+  //      },
+  //   });
+  //   if (country !== null) {
+  //     return res.json(country);
+  //   } else {
+  //     return res.status(400).json("no existe el id");
+  //   }
+  // } catch (error) {
+  //   res.send({ msg: error.message });
+  // }
 });
 
 module.exports = router;

@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-    imgFlag: {
+    flag: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,13 +27,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    subRegion: {
+    subregion: {
       type: DataTypes.STRING,
     },
     area: {
       type: DataTypes.INTEGER,
     },
-    poblacion: {
+    population: {
       type: DataTypes.INTEGER,
     }
   });
