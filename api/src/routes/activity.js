@@ -11,17 +11,17 @@ router.post("/", async (req, res) => {
       difficulty,
       duration,
       season,
-      countries,
     });
-    // res.json(createActivity);
-    const findActivity = await Activity.findAll({
+    
+    const findActivity = await Country.findAll({
       where: {
         name: countries,
       },
     });
     createActivity.addCountries(findActivity);
-    // res.send(createActivity);
-    res.send("pais creado");
+    
+    return res.send("actividad creada");
+
   } catch (error) {
     res.send({ msg: error.message });
   }

@@ -69,23 +69,6 @@ router.get("/:id", async (req, res) => {
     res.json(countryId) :
     res.json("no existe")
   }
-
-  // const { id } = req.params;
-  // try {
-  //   const country = await Country.findByPk(id, {
-  //     include: {
-  //       model: Activity  
-  //      },
-  //   });
-  //   if (country !== null) {
-  //     return res.json(country);
-  //   } else {
-  //     return res.status(400).json("no existe el id");
-  //   }
-  // } catch (error) {
-  //   res.send({ msg: error.message });
-  // }
-
 });
 
 module.exports = router;
