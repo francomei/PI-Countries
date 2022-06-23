@@ -7,6 +7,7 @@ export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
 export const POST_ACTIVITY = "POST_ACTIVITY";
+export const GET_NAME_COUNTRIES = "GET_NAME_COUNTRIES";
 
 export function getAllCountries() {
   return async function (dispatch) {
@@ -53,6 +54,13 @@ export function orderByContinent(payload) {
 }
 
 
+export function orderByPopulation(payload) {
+  return {
+    type: ORDER_BY_POPULATION,
+    payload
+  }
+}
+
 export function orderByName(payload) {
   return {
     type: ORDER_BY_NAME,
@@ -60,9 +68,16 @@ export function orderByName(payload) {
   }
 }
 
-export function orderByPopulation(payload) {
-  return {
-    type: ORDER_BY_POPULATION,
-    payload
+export function getCountriesByName(name){
+  return async function (dispatch) {
+    try {
+      var response = await axios("http://localhost:3001/countries?name=" + name)
+      return dispatch({
+        type: GET_NAME_COUNTRIES,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

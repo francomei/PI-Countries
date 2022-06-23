@@ -6,6 +6,7 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_POPULATION,
   GET_ACTIVITIES,
+  GET_NAME_COUNTRIES,
 } from "../actions";
 
 const initialState = {
@@ -22,6 +23,12 @@ function rootReducer(state = initialState, action) {
         countries: action.payload,
         allCountries: action.payload,
       };
+    
+    case GET_NAME_COUNTRIES:
+      return {
+        ...state,
+        countries: action.payload,
+      }
 
     case FILTER_CONTINENT:
       const everyCountries = state.allCountries;
