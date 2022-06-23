@@ -1,8 +1,12 @@
 import axios from "axios";
 
 export const GET_COUNTRIES = "GET_COUNTRIES";
-export const ORDER_BY_CONTINENT = "ORDER_BY_CONTINENT";
+export const FILTER_CONTINENT = "FILTER_CONTINENT";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
+export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
+export const POST_ACTIVITY = "POST_ACTIVITY";
 
 export function getAllCountries() {
   return async function (dispatch) {
@@ -14,16 +18,51 @@ export function getAllCountries() {
   };
 }
 
-export function orderByContinent(payload) {
-  return {
-    type: ORDER_BY_CONTINENT,
-    payload,
+export function getAllActivities() {
+  return async function (dispatch) {
+    var response = await axios("http://localhost:3001/activities");
+    return dispatch({
+      type: GET_ACTIVITIES,
+      payload: response.data,
+    });
   };
+}
+
+export function postActivity(payload) {
+  return async function (dispatch) {
+    const activity = axios.post("/activity", payload);
+    return dispatch({
+      type: POST_ACTIVITY,
+      payload: activity
+    })
+  }
 }
 
 export function filterActivity(payload) {
   return {
     type: FILTER_ACTIVITY,
+    payload
+  }
+}
+
+export function orderByContinent(payload) {
+  return {
+    type: FILTER_CONTINENT,
+    payload,
+  };
+}
+
+
+export function orderByName(payload) {
+  return {
+    type: ORDER_BY_NAME,
+    payload
+  }
+}
+
+export function orderByPopulation(payload) {
+  return {
+    type: ORDER_BY_POPULATION,
     payload
   }
 }

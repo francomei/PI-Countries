@@ -10,7 +10,7 @@ const getCountries = async () => {
       name: e.name.common,
       id: e.cca3,
       flag: e.flags[1],
-      continent: e.continents,
+      continent: e.continents[0],
       capital: e.capital,
       subregion: e.subregion,
       area: e.area,
