@@ -11,6 +11,7 @@ router.post("/", async (req, res) => {
       difficulty,
       duration,
       season,
+      countries,
     });
     
     const findActivity = await Country.findAll({

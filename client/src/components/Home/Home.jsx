@@ -74,7 +74,7 @@ export default function Home() {
 
   return (
     <div>
-      <Link to="/countries">Crear Actividad</Link>
+      <Link to="/activities">Crear Actividad</Link>
       <h1>Titulo de mi pag</h1>
       <button
         onClick={(e) => {
@@ -115,6 +115,7 @@ export default function Home() {
           ))}
         </select>
       </div>
+      
       <Paginado
         countriesPerPage={countriesPerPage}
         allCountries={countries.length}

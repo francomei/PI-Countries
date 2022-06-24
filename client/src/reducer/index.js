@@ -111,12 +111,12 @@ function rootReducer(state = initialState, action) {
     case GET_ACTIVITIES:
       return {
         ...state,
+        activities: action.payload,
       };
 
     case POST_ACTIVITY:
       return {
         ...state,
-        activities: action.payload,
       };
 
     default:

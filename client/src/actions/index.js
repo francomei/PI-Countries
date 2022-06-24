@@ -31,7 +31,7 @@ export function getAllActivities() {
 
 export function postActivity(payload) {
   return async function (dispatch) {
-    const activity = axios.post("/activity", payload);
+    const activity = axios.post("http://localhost:3001/activities", payload);
     return dispatch({
       type: POST_ACTIVITY,
       payload: activity
