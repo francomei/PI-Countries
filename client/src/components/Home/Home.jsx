@@ -13,6 +13,8 @@ import {
 import Card from "../Card/Card";
 import Paginado from "../Paginate/Paginate";
 import SearchBar from "../SearchBar/SearchBar";
+import "./Home.module.css"
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -115,13 +117,17 @@ export default function Home() {
           ))}
         </select>
       </div>
-      
+
+      <div className="paginado">
       <Paginado
         countriesPerPage={countriesPerPage}
         allCountries={countries.length}
         paginate={paginate}
       />
+      </div>
+      
       <SearchBar />
+
       <div>
         {currentCountry?.map((c) => {
           return <Card name={c.name} flag={c.flag} continent={c.continent} />;

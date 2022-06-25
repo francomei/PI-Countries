@@ -59,7 +59,17 @@ export default function AddActivity() {
     );
   }
 
+  function handleDelete(e) {
+    setInput({
+      ...input,
+      countries: input.countries.filter((c) => c !== e), // filtrame por todo lo qe no sea ese elemento, me devuleve todo sin ese elemento.
+    });
+  }
+
   function handleSelect(e) {
+    if (input.countries.find((p) => p === e.target.value)) {
+      return;
+    }
     setInput({
       ...input,
       countries: [...input.countries, e.target.value],
@@ -115,7 +125,7 @@ export default function AddActivity() {
             <option value="4">Dificil</option>
             <option value="5">Profesional</option>
           </select>
-          {error.dificultad && <p>{error.dificultad}</p>}
+          {error.name && <p>{error.name}</p>}
         </div>
         <div>
           <label>Duracion: </label>
@@ -130,7 +140,7 @@ export default function AddActivity() {
             <option value="4">4 horas</option>
             <option value="5">5 horas</option>
           </select>
-          {error.duracion && <p>{error.duracion}</p>}
+          {error.name && <p>{error.name}</p>}
         </div>
         <div>
           <label>Temporada: </label>
@@ -170,22 +180,29 @@ export default function AddActivity() {
             />
             Primavera{" "}
           </label>
-          {error.season && <p>{error.season}</p>}
+          {error.name && <p>{error.name}</p>}
         </div>
 
         <select onChange={(e) => handleSelect(e)}>
-            <option disabled="">Seleccionar pais</option>
-          Countries
           {countries.map((country) => (
-            <option value={country.name} key={country.id}>
+            <option value={country.name}>
               {country.name}
             </option>
           ))}
         </select>
 
+        <ul><li>{input.countries.map((c) => c + " ,")}</li></ul>
+
 
         <button type="submit">Crear Actividad</button>
       </form>
+        <div>
+          {input.countries.map((country) => (
+            <div>
+              <button onClick={() => handleDelete(country)}>X</button>
+            </div>
+          ))}
+        </div>
     </div>
   );
 }

@@ -1,0 +1,4 @@
+.paginado{
+    display: flex;
+    flex-direction: row;
+}

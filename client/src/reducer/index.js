@@ -7,12 +7,14 @@ import {
   ORDER_BY_POPULATION,
   GET_ACTIVITIES,
   GET_NAME_COUNTRIES,
+  GET_DETAIL,
 } from "../actions";
 
 const initialState = {
   countries: [],
   allCountries: [],
   activities: [],
+  detail: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -118,6 +120,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: action.payload
+      }  
 
     default:
       return {
