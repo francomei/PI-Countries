@@ -13,11 +13,12 @@ export default function Detail(props) {
 
   return (
     <div>
-      {countryDetail.length > 0 ? (
+      {countryDetail.length ? (
         <div>
           <div>
             <h1>{countryDetail[0].name}</h1>
             <img src={countryDetail[0].flag} />
+            <h2>ID: {countryDetail[0].id}</h2>
             <h2>Capital: {countryDetail[0].capital}</h2>
             <h2>Continent: {countryDetail[0].continent}</h2>
             <h2>Subregion: {countryDetail[0].subregion}</h2>
@@ -26,13 +27,14 @@ export default function Detail(props) {
           </div>
           <div>
             {countryDetail[0].activities.map((activity) => {
+              return(
               <div>
                 <h3>{activity.name}</h3>
                 <h3>Dificultad: {activity.difficulty}</h3>
                 <h3>Duracion: {activity.duration}</h3>
                 <h3>Temporada: {activity.season}</h3>
-              </div>;
-            })}
+              </div>
+            )})}
           </div>
           <Link to="/home">
             <button>Volver</button>

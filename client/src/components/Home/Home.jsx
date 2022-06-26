@@ -13,15 +13,14 @@ import {
 import Card from "../Card/Card";
 import Paginado from "../Paginate/Paginate";
 import SearchBar from "../SearchBar/SearchBar";
-import "./Home.module.css"
-
+import "./Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
   const activities = useSelector((state) => state.activities);
 
-  const[, setOrden] = useState("");
+  const [, setOrden] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   // const [countriesPerPage, setcountriesPerPage] = useState(9);
@@ -112,25 +111,32 @@ export default function Home() {
         <select onChange={(e) => handleFilterActivity(e)}>
           <option value="">Actividades</option>
           <option value="All">All</option>
-          {activities && activities.map((a, i) => (
-          <option key={i + a.name} value={a.name}>{a.name}</option>
-          ))}
+          {activities &&
+            activities.map((a, i) => (
+              <option key={i + a.name} value={a.name}>
+                {a.name}
+              </option>
+            ))}
         </select>
       </div>
 
       <div className="paginado">
-      <Paginado
-        countriesPerPage={countriesPerPage}
-        allCountries={countries.length}
-        paginate={paginate}
-      />
+        <Paginado
+          countriesPerPage={countriesPerPage}
+          allCountries={countries.length}
+          paginate={paginate}
+        />
       </div>
-      
+
       <SearchBar />
 
       <div>
         {currentCountry?.map((c) => {
-          return <Card name={c.name} flag={c.flag} continent={c.continent} />;
+          return (
+            <Link to={"/countries/" + c.id}>
+              <Card name={c.name} flag={c.flag} continent={c.continent} />
+            </Link>
+          );
         })}
       </div>
     </div>
