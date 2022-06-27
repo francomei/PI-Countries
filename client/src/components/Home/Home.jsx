@@ -109,14 +109,16 @@ export default function Home() {
         </select>
 
         <select onChange={(e) => handleFilterActivity(e)}>
-          <option value="">Actividades</option>
+          <option selected disabled value="">Actividades</option>
           <option value="All">All</option>
-          {activities &&
-            activities.map((a, i) => (
-              <option key={i + a.name} value={a.name}>
+          {activities?.map((a, i) => (
+              <option key={i} value={a.name}>
                 {a.name}
               </option>
             ))}
+            <div>
+              <Link to="/activities"></Link>
+            </div>
         </select>
       </div>
 
@@ -131,10 +133,14 @@ export default function Home() {
       <SearchBar />
 
       <div>
-        {currentCountry?.map((c) => {
+        {currentCountry?.map((country) => {
           return (
-            <Link to={"/countries/" + c.id}>
-              <Card name={c.name} flag={c.flag} continent={c.continent} />
+            <Link to={"/detail/" + country.id}>
+              <Card 
+              name={country.name} 
+              flag={country.flag} 
+              continent={country.continent} 
+              />
             </Link>
           );
         })}

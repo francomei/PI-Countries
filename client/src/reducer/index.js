@@ -8,6 +8,7 @@ import {
   GET_ACTIVITIES,
   GET_NAME_COUNTRIES,
   GET_DETAIL,
+  RESET_DETAIL,
 } from "../actions";
 
 const initialState = {
@@ -125,6 +126,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload
+      };
+      
+    case RESET_DETAIL:
+      return {
+        ...state,
+        detail: []
       }  
 
     default:

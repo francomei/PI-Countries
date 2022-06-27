@@ -9,6 +9,7 @@ export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
 export const POST_ACTIVITY = "POST_ACTIVITY";
 export const GET_NAME_COUNTRIES = "GET_NAME_COUNTRIES";
 export const GET_DETAIL = "GET_DETAIL";
+export const RESET_DETAIL = "RESET_DETAIL";
 
 export function getAllCountries() {
   return async function (dispatch) {
@@ -96,4 +97,12 @@ export function getDetail(id) {
       console.log(error);
     }
   };
+}
+
+export function resetDetail(){
+  return (dispatch => {
+    dispatch({
+      type: RESET_DETAIL,
+    })
+  })
 }

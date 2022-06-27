@@ -1,0 +1,30 @@
+body{
+    /* background-image: url("");
+    background-repeat: no-repeat;
+    background-size: cover;  */
+}
+
+.landing{
+    display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.btn{
+    color: black;
+    border-color: black;
+    border-radius: 5px;
+    border: 1.5px solid black;
+    font-size: 2220px;
+}
+
+.btn:hover{
+    background-color: black;
+    color: white;
+    transform: scale(1.2);
+    transition: all 0.5s;
+}
