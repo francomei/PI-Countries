@@ -4,39 +4,47 @@ const axios = require("axios");
 const router = Router();
 
 const getCountries = async () => {
-  const apiUrl = await axios.get("https://restcountries.com/v3/all");
-  const apiInfo = await apiUrl.data.map((e) => {
-    return {
-      name: e.name.common,
-      id: e.cca3,
-      flag: e.flags[1],
-      continent: e.continents[0],
-      capital: e.capital,
-      subregion: e.subregion,
-      area: e.area,
-      population: e.population,
-    };
+  const countriesTable = await Country.findAll({
+    include: [{ model: Activity }],
   });
-  return apiInfo;
-};
 
-const getDbInfo = async () => {
-  return await Country.findAll({
-    include: {
-      model: Activity,
-      attributes: ["name", "difficulty", "duration", "season"],
-      through: {
-        attributes: [],
-      },
-    },
-  });
-};
+  if (countriesTable.length === 0) {
+    try {
+      const apiUrl = await axios.get("https://restcountries.com/v3/all");
+      const apiInfo = await apiUrl.data.map((e) => {
+        return {
+          name: e.name.common,
+          id: e.cca3,
+          flag: e.flags[1],
+          continent: e.continents[0],
+          capital: e.capital,
+          subregion: e.subregion,
+          area: e.area,
+          population: e.population,
+        };
+      });
 
-const getAllCountries = async () => {
-  const apiInfo = await getCountries();
-  const dbInfo = await getDbInfo();
-  const result = apiInfo.concat(dbInfo);
-  return result;
+      apiInfo.map(async (e) => {
+        await Country.findOrCreate({
+          where: {
+            id: e.id,
+            name: e.name.toUpperCase(),
+            flag: e.flag,
+            continent: e.continent,
+            capital: e.capital ? e.capital[0] : "Capital not found",
+            subregion: e.subregion ? e.subregion : "Subregion not found",
+            area: e.area,
+            population: e.population,
+          },
+        });
+      });
+      return apiInfo;
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    return countriesTable;
+  }
 };
 
 router.get("/", async (req, res) => {
@@ -59,15 +67,16 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-
   const { id } = req.params;
-  const allCountries = await getAllCountries();
-  if(id) {
-    let countryId = await allCountries.filter(e => e.id.toUpperCase() == id.toUpperCase())
-    
-    countryId.length ?
-    res.json(countryId) :
-    res.json("no existe")
+  try {
+    const getCountry = await Country.findByPk(id.toUpperCase(), {
+      include: {
+        model: Activity,
+      },
+    });
+    return res.send(getCountry);
+  } catch (error) {
+    console.log(error);
   }
 });
 

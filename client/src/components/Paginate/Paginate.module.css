@@ -1,4 +1,22 @@
 .paginado{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteo{
+    width: 40px;
+  height: 40px;
+  border: none;
+  color: #090909;
+  padding: 08px;
+  margin: 02px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 0px;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  cursor: pointer;
 }

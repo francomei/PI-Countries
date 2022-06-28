@@ -92,7 +92,7 @@ export default function AddActivity() {
 
   useEffect(() => {
     dispatch(getAllActivities());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

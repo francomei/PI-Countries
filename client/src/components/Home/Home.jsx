@@ -110,7 +110,6 @@ export default function Home() {
 
         <select onChange={(e) => handleFilterActivity(e)}>
           <option selected disabled value="">Actividades</option>
-          <option value="All">All</option>
           {activities?.map((a, i) => (
               <option key={i} value={a.name}>
                 {a.name}

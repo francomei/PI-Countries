@@ -1,28 +1,27 @@
 const { Router } = require("express");
-const { Sequelize } = require("sequelize");
 const { Activity, Country } = require("../db");
+const { v4: uuidv4 } = require("uuid");
 const router = Router();
 
 router.post("/", async (req, res) => {
   const { countries, name, difficulty, duration, season } = req.body;
   try {
+    const id = uuidv4();
     const createActivity = await Activity.create({
+      id,
       name,
       difficulty,
       duration,
       season,
-      countries,
     });
-    
-    const findActivity = await Country.findAll({
+    const findCountry = await Country.findAll({
       where: {
-        name: countries,
+        id: countries,
       },
     });
-    createActivity.addCountries(findActivity);
-    
-    return res.send("actividad creada");
+    await createActivity.addCountries(findCountry);
 
+    return res.send(createActivity);
   } catch (error) {
     res.send({ msg: error.message });
   }
@@ -30,7 +29,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const activities = await Activity.findAll({include: Country});
+    const activities = await Activity.findAll({ include: Country });
     return res.status(200).send(activities);
   } catch (error) {
     return res.status(400).send(error);

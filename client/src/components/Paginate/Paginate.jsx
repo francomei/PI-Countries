@@ -12,7 +12,7 @@ export default function Paginado({ countriesPerPage, allCountries, paginate }) {
         {pageNumbers &&
           pageNumbers.map((number) => (
             <li>
-              <a onClick={() => {paginate(number)}}>{number}</a>
+              <a className="conteo" onClick={() => {paginate(number)}}>{number}</a>
             </li>
           ))}
       </ul>
