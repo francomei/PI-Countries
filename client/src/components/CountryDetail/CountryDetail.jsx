@@ -27,7 +27,7 @@ export default function Detail(props) {
             <h2>Poblacion: {countryDetail.population}</h2>
           </div>
           <div>
-            <h2>Activities</h2>
+            <h2>Activities:</h2>
             {countryDetail.activities?.map((activity) => {
               return (
                 <div> 

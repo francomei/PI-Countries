@@ -13,7 +13,7 @@ import {
 import Card from "../Card/Card";
 import Paginado from "../Paginate/Paginate";
 import SearchBar from "../SearchBar/SearchBar";
-import "./Home.module.css";
+import Style from "./Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -74,9 +74,9 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div >
       <Link to="/activities">Crear Actividad</Link>
-      <h1>Titulo de mi pag</h1>
+      <h1>Welcome</h1>
       <button
         onClick={(e) => {
           handleClick(e);
@@ -84,7 +84,7 @@ export default function Home() {
       >
         Volver a cargar los paises
       </button>
-      <div>
+      <div className={Style.paginado}>
         <select onChange={(e) => handleFilterContinent(e)}>
           <option value="All">Todos</option>
           <option value="Africa">Africa</option>
@@ -110,18 +110,19 @@ export default function Home() {
 
         <select onChange={(e) => handleFilterActivity(e)}>
           <option selected disabled value="">Actividades</option>
-          {activities?.map((a, i) => (
-              <option key={i} value={a.name}>
-                {a.name}
-              </option>
-            ))}
-            <div>
-              <Link to="/activities"></Link>
-            </div>
+          <option value="All">All</option>
+          {activities?.map(act => {
+          return(
+            <option id={act.id} key={act.id} value={act.name}>{act.name}</option>
+          )
+        })}
+            {/* <div>
+              <Link to="/activities">Crear Actividad</Link>
+            </div> */}
         </select>
       </div>
 
-      <div className="paginado">
+      <div className={Style.paginate}>
         <Paginado
           countriesPerPage={countriesPerPage}
           allCountries={countries.length}

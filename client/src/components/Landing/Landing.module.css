@@ -1,30 +1,31 @@
 body{
-    background-image: url("https://s1.1zoom.me/big0/54/Desert_Fantastic_world_442920.jpg");
+    background-image: url("https://m.media-amazon.com/images/I/A14P+VnW4QL._AC_SL1500_.jpg");
     background-repeat: no-repeat;
     background-size: cover; 
 }
 
-.landing{
+.landing{   
+    font-size: 80px;
+    margin-top: 300px;
     display: flex;
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
+    height: 10vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .btn{
-    color: black;
-    border-color: black;
+    color: white;
+    background-color: black;
+    border-color: white;
     border-radius: 5px;
-    border: 1.5px solid black;
-    font-size: 2220px;
+    border: 1.5px solid white;
+    font-size: 30px;
 }
 
 .btn:hover{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     transform: scale(1.2);
     transition: all 0.5s;
 }

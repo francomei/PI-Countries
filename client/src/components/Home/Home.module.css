@@ -1,5 +1,38 @@
-.paginado{
+body {
+    
+    background-attachment: fixed;
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+
+    /* margin: 0;
+    padding: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+  }
+  
+.paginado{
+    flex-wrap: wrap;
+    
+}
+
+.paginate{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
 }

@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const activities = await Activity.findAll({ include: Country });
+    const activities = await Activity.findAll();
     return res.status(200).send(activities);
   } catch (error) {
     return res.status(400).send(error);

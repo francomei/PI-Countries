@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { postActivity, getAllActivities } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
+import Styles from "./AddActivity.module.css";
 
 export default function AddActivity() {
   const dispatch = useDispatch();
@@ -77,14 +78,14 @@ export default function AddActivity() {
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     dispatch(postActivity(input));
     alert("Actividad Creada");
     setInput({
       name: "",
       dificultad: "",
       duracion: "",
-      season: "",
+      season: ["Verano", "Invierno", "Primavera", "Otoño"],
       countries: [],
     });
     history.push("/home");
@@ -95,12 +96,9 @@ export default function AddActivity() {
   }, [dispatch]);
 
   return (
-    <div>
-      <Link to="/home">
-        <button>Volver</button>
-      </Link>
+    <div className={Styles.all}>
       <h1>Crea tu actividad</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className={Styles.form}>
         <div>
           <label>Nombre: </label>
           <input
@@ -119,11 +117,11 @@ export default function AddActivity() {
             name="dificultad"
             onChange={(e) => handleChange(e)}
           >
-            <option value="1">Inicial</option>
-            <option value="2">Baja</option>
-            <option value="3">Media</option>
-            <option value="4">Dificil</option>
-            <option value="5">Profesional</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
           </select>
           {error.name && <p>{error.name}</p>}
         </div>
@@ -183,26 +181,46 @@ export default function AddActivity() {
           {error.name && <p>{error.name}</p>}
         </div>
 
-        <select onChange={(e) => handleSelect(e)}>
+        <select onChange={(e) => handleSelect(e)} className={Styles.countries}>
+          <option selected disabled>
+            Select Country
+          </option>
           {countries.map((country) => (
-            <option value={country.name}>
-              {country.name}
-            </option>
+            <option value={country.name}>{country.name}</option>
           ))}
         </select>
 
-        <ul><li>{input.countries.map((c) => c + " ,")}</li></ul>
-
-
-        <button type="submit">Crear Actividad</button>
-      </form>
-        <div>
+        <div className={Styles.countriesSelected}>
           {input.countries.map((country) => (
-            <div>
-              <button onClick={() => handleDelete(country)}>X</button>
+            <div className={Styles.country} key={country.id}>
+              <h4>{country}</h4>
+              <button
+                onClick={() => handleDelete(country)}
+                className={Styles.btnCrear}
+              >
+                X
+              </button>
             </div>
           ))}
         </div>
+
+        <input
+          className={Styles.submit}
+          type="submit"
+          value="Crear Actividad"
+          disabled={
+            !input.name ||
+            !input.dificultad ||
+            !input.duracion ||
+            !input.season ||
+            !input.countries
+          }
+        />
+      </form>
+
+      <Link to="/home">
+        <button className={Styles.btnHome}>Volver al Home</button>
+      </Link>
     </div>
   );
 }
