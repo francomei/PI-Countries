@@ -14,23 +14,23 @@ export default function Detail(props) {
 
   return (
     <div>
-      {countryDetail.length ? (
+      {Object.keys(countryDetail).length ? (
         <div>
           <div>
-            <img src={countryDetail[0].flag} alt="flag" />
-            <h1>{countryDetail[0].name}</h1>
-            <h2>ID: {countryDetail[0].id}</h2>
-            <h2>Capital: {countryDetail[0].capital}</h2>
-            <h2>Continent: {countryDetail[0].continent}</h2>
-            <h2>Subregion: {countryDetail[0].subregion}</h2>
-            <h2>Area: {countryDetail[0].area} Km2</h2>
-            <h2>Poblacion: {countryDetail[0].population}</h2>
+            <img src={countryDetail.flag} alt="flag" />
+            <h1>{countryDetail.name}</h1>
+            <h2>ID: {countryDetail.id}</h2>
+            <h2>Capital: {countryDetail.capital}</h2>
+            <h2>Continent: {countryDetail.continent}</h2>
+            <h2>Subregion: {countryDetail.subregion}</h2>
+            <h2>Area: {countryDetail.area} Km2</h2>
+            <h2>Poblacion: {countryDetail.population}</h2>
           </div>
           <div>
-            {countryDetail[0].activities?.map((activity) => {
+            <h2>Activities</h2>
+            {countryDetail.activities?.map((activity) => {
               return (
-                <div>
-                  <Link to="/activities">Create Activity</Link>
+                <div> 
                   <h3>{activity.name}</h3>
                   <h3>Dificultad: {activity.difficulty}</h3>
                   <h3>Duracion: {activity.duration}</h3>
@@ -39,6 +39,7 @@ export default function Detail(props) {
               );
             })}
           </div>
+          <Link to="/activities">Create Activity</Link>
           <Link to="/home">
             <button>Volver</button>
           </Link>
