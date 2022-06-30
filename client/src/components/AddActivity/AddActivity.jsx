@@ -12,9 +12,9 @@ export default function AddActivity() {
 
   const [input, setInput] = useState({
     name: "",
-    dificultad: "",
-    duracion: "",
-    season: "",
+    difficulty: "",
+    duration: "",
+    season: ["Verano", "Invierno", "Primavera", "Otoño"],
     countries: [],
   });
 
@@ -22,8 +22,8 @@ export default function AddActivity() {
     let error = {};
     if (
       !input.name ||
-      !input.dificultad ||
-      !input.duracion ||
+      !input.difficulty ||
+      !input.duration ||
       !input.season ||
       !input.countries
     ) {
@@ -80,11 +80,12 @@ export default function AddActivity() {
   function handleSubmit(e) {
     // e.preventDefault();
     dispatch(postActivity(input));
+    console.log(input);
     alert("Actividad Creada");
     setInput({
       name: "",
-      dificultad: "",
-      duracion: "",
+      difficulty: "",
+      duration: "",
       season: ["Verano", "Invierno", "Primavera", "Otoño"],
       countries: [],
     });
@@ -113,8 +114,8 @@ export default function AddActivity() {
         <div>
           <label>Dificultad: </label>
           <select
-            value={input.dificultad}
-            name="dificultad"
+            value={input.difficulty}
+            name="difficulty"
             onChange={(e) => handleChange(e)}
           >
             <option value="1">1</option>
@@ -128,8 +129,8 @@ export default function AddActivity() {
         <div>
           <label>Duracion: </label>
           <select
-            value={input.duracion}
-            name="duracion"
+            value={input.duration}
+            name="duration"
             onChange={(e) => handleChange(e)}
           >
             <option value="1">1 hora</option>
@@ -186,7 +187,9 @@ export default function AddActivity() {
             Select Country
           </option>
           {countries.map((country) => (
-            <option value={country.name}>{country.name}</option>
+            <option value={country.id} key={country.id}>
+              {country.name}
+            </option>
           ))}
         </select>
 
@@ -194,12 +197,12 @@ export default function AddActivity() {
           {input.countries.map((country) => (
             <div className={Styles.country} key={country.id}>
               <h4>{country}</h4>
-              <button
+              <input
+                type="button"
                 onClick={() => handleDelete(country)}
                 className={Styles.btnCrear}
-              >
-                X
-              </button>
+                value="X"
+              />
             </div>
           ))}
         </div>
@@ -210,8 +213,8 @@ export default function AddActivity() {
           value="Crear Actividad"
           disabled={
             !input.name ||
-            !input.dificultad ||
-            !input.duracion ||
+            !input.difficulty ||
+            !input.duration ||
             !input.season ||
             !input.countries
           }

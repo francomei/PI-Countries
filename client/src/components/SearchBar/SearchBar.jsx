@@ -6,9 +6,15 @@ import { getCountriesByName } from "../../actions";
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState(""); // yo voy a estar guardando lo que tipea el usuario en mi estado local name
+  const [, setCurrentPage] = useState(1);
+  
+  // const paginate = (pageNumber) => {
+  //   setCurrentPage(pageNumber);
+  // };
 
   function handleInputChange(e) {
     e.preventDefault();
+    setCurrentPage(1)
     setName(e.target.value);
     console.log(name);
   }

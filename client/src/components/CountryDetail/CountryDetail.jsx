@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getDetail, resetDetail } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
+import Styles from "./CountryDetail.module.css";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
@@ -9,13 +10,13 @@ export default function Detail(props) {
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
-    dispatch(resetDetail())
+    dispatch(resetDetail());
   }, [dispatch, props.match.params.id]);
 
   return (
-    <div>
+    <div className={Styles.detail}>
       {Object.keys(countryDetail).length ? (
-        <div>
+        <div className={Styles.country}>
           <div>
             <img src={countryDetail.flag} alt="flag" />
             <h1>{countryDetail.name}</h1>
@@ -26,11 +27,11 @@ export default function Detail(props) {
             <h2>Area: {countryDetail.area} Km2</h2>
             <h2>Poblacion: {countryDetail.population}</h2>
           </div>
-          <div>
+          <div className={Styles.activities}>
             <h2>Activities:</h2>
             {countryDetail.activities?.map((activity) => {
               return (
-                <div> 
+                <div>
                   <h3>{activity.name}</h3>
                   <h3>Dificultad: {activity.difficulty}</h3>
                   <h3>Duracion: {activity.duration}</h3>
@@ -39,14 +40,14 @@ export default function Detail(props) {
               );
             })}
           </div>
-          <Link to="/activities">Create Activity</Link>
-          <Link to="/home">
-            <button>Volver</button>
-          </Link>
         </div>
       ) : (
         <p>Loading</p>
       )}
+      <Link to="/activities">Create Activity</Link>
+      <Link to="/home">
+        <button>Volver</button>
+      </Link>
     </div>
   );
 }

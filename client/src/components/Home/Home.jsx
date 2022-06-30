@@ -55,21 +55,25 @@ export default function Home() {
 
   function handleSort(e) {
     e.preventDefault();
+    setCurrentPage(1)
     dispatch(orderByName(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   }
 
   function handleSort2(e) {
     e.preventDefault();
+    setCurrentPage(1)
     dispatch(orderByPopulation(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   }
 
   function handleFilterContinent(e) {
+    setCurrentPage(1)
     dispatch(orderByContinent(e.target.value));
   }
 
   function handleFilterActivity(e) {
+    setCurrentPage(1)
     dispatch(filterActivity(e.target.value));
   }
 
@@ -116,9 +120,6 @@ export default function Home() {
             <option id={act.id} key={act.id} value={act.name}>{act.name}</option>
           )
         })}
-            {/* <div>
-              <Link to="/activities">Crear Actividad</Link>
-            </div> */}
         </select>
       </div>
 
