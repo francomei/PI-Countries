@@ -17,8 +17,8 @@ export default function Detail(props) {
     <div className={Styles.detail}>
       {Object.keys(countryDetail).length ? (
         <div className={Styles.country}>
-          <div>
-            <img src={countryDetail.flag} alt="flag" />
+          <img className={Styles.flag} src={countryDetail.flag} alt="flag" />
+          <div className={Styles.countries}>
             <h1>{countryDetail.name}</h1>
             <h2>ID: {countryDetail.id}</h2>
             <h2>Capital: {countryDetail.capital}</h2>
@@ -32,7 +32,7 @@ export default function Detail(props) {
             {countryDetail.activities?.map((activity) => {
               return (
                 <div>
-                  <h3>{activity.name}</h3>
+                  <h3>Nombre: {activity.name}</h3>
                   <h3>Dificultad: {activity.difficulty}</h3>
                   <h3>Duracion: {activity.duration}</h3>
                   <h3>Temporada: {activity.season}</h3>
@@ -44,10 +44,14 @@ export default function Detail(props) {
       ) : (
         <p>Loading</p>
       )}
-      <Link to="/activities">Create Activity</Link>
-      <Link to="/home">
-        <button>Volver</button>
-      </Link>
+      <div>
+        <Link to="/home">
+          <button className={Styles.btn}>Volver</button>
+        </Link>
+        <Link to="/activities">
+          <button className={Styles.btn}>Create Activity</button>
+        </Link>
+      </div>
     </div>
   );
 }
