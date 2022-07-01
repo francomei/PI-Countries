@@ -13,7 +13,7 @@ import {
 import Card from "../Card/Card";
 import Paginado from "../Paginate/Paginate";
 import SearchBar from "../SearchBar/SearchBar";
-import Style from "./Home.module.css";
+import Styles from "./Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -39,6 +39,10 @@ export default function Home() {
     indexOfLastCountry
   );
 
+  function search() {
+    setCurrentPage(1);
+  }
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -55,96 +59,121 @@ export default function Home() {
 
   function handleSort(e) {
     e.preventDefault();
-    setCurrentPage(1)
+    setCurrentPage(1);
     dispatch(orderByName(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   }
 
   function handleSort2(e) {
     e.preventDefault();
-    setCurrentPage(1)
+    setCurrentPage(1);
     dispatch(orderByPopulation(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   }
 
   function handleFilterContinent(e) {
-    setCurrentPage(1)
+    setCurrentPage(1);
     dispatch(orderByContinent(e.target.value));
   }
 
   function handleFilterActivity(e) {
-    setCurrentPage(1)
+    setCurrentPage(1);
     dispatch(filterActivity(e.target.value));
   }
 
   return (
-    <div >
-      <Link to="/activities">Crear Actividad</Link>
-      <h1>Welcome</h1>
-      <button
-        onClick={(e) => {
-          handleClick(e);
-        }}
-      >
-        Volver a cargar los paises
-      </button>
-      <div className={Style.paginado}>
-        <select onChange={(e) => handleFilterContinent(e)}>
-          <option value="All">Todos</option>
-          <option value="Africa">Africa</option>
-          <option value="Antarctica">Antartida</option>
-          <option value="North America">America del Norte</option>
-          <option value="South America">America del Sur</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europa</option>
-          <option value="Oceania">Oceania</option>
-        </select>
+    <div className={Styles.allContainer}>
+      <div className={Styles.main}>
+        <button
+          className={Styles.btnReload}
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        >
+          Cargar Paises
+        </button>
+        <h1>Countries's App</h1>
+        <div className={Styles.createAct}>
+          <Link to="/activities" className={Styles.link}>
+            Crear Actividad
+          </Link>
+        </div>
+      </div>
+      <div className={Styles.allFilters}>
+        <div className={Styles.filterContainer}>
+          <select
+            onChange={(e) => handleFilterContinent(e)}
+            className={Styles.filters}
+          >
+            <option value="All">Todos</option>
+            <option value="Africa">Africa</option>
+            <option value="Antarctica">Antartida</option>
+            <option value="North America">America del Norte</option>
+            <option value="South America">America del Sur</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europa</option>
+            <option value="Oceania">Oceania</option>
+          </select>
 
-        <select onChange={(e) => handleSort(e)}>
-          <option value="">Nombre Alfabeticamente</option>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
+          <select onChange={(e) => handleSort(e)} className={Styles.filters}>
+            <option selected disabled value="">
+              Nombre Alfabeticamente
+            </option>
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
 
-        <select onChange={(e) => handleSort2(e)}>
-          <option value="">Poblacion</option>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
+          <select onChange={(e) => handleSort2(e)} className={Styles.filters}>
+            <option selected disabled value="">
+              Poblacion
+            </option>
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
 
-        <select onChange={(e) => handleFilterActivity(e)}>
-          <option selected disabled value="">Actividades</option>
-          <option value="All">All</option>
-          {activities?.map(act => {
-          return(
-            <option id={act.id} key={act.id} value={act.name}>{act.name}</option>
-          )
-        })}
-        </select>
+          <select
+            onChange={(e) => handleFilterActivity(e)}
+            className={Styles.filters}
+          >
+            <option selected disabled value="">
+              Actividades
+            </option>
+            <option value="All">All</option>
+            {activities?.map((act) => {
+              return (
+                <option id={act.id} key={act.id} value={act.name}>
+                  {act.name}
+                </option>
+              );
+            })}
+          </select>
+          <div onChange={(e) => search(e)} className={Styles.searchBar}>
+            <SearchBar />
+          </div>
+        </div>
       </div>
 
-      <div className={Style.paginate}>
+      <div className={Styles.card}>
+        {currentCountry?.map((country) => {
+          return (
+            <div className={Styles.link}>
+              <Link to={"/detail/" + country.id} className={Styles.link}>
+                <Card
+                  name={country.name}
+                  flag={country.flag}
+                  continent={country.continent}
+                />
+              </Link>
+            </div>
+          );
+        })}
+      </div>
+      <div className={Styles.paginate}>
         <Paginado
           countriesPerPage={countriesPerPage}
           allCountries={countries.length}
           paginate={paginate}
         />
-      </div>
-
-      <SearchBar />
-
-      <div>
-        {currentCountry?.map((country) => {
-          return (
-            <Link to={"/detail/" + country.id}>
-              <Card 
-              name={country.name} 
-              flag={country.flag} 
-              continent={country.continent} 
-              />
-            </Link>
-          );
-        })}
       </div>
     </div>
   );

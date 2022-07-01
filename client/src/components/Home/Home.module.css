@@ -9,26 +9,97 @@ body {
     margin: 0;
     padding: 0;
     width: 100vw;
-
-    /* margin: 0;
-    padding: 0;
-    width: 100vw;
-    box-sizing: border-box;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-color: grey;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
   }
-  
 
+.filterContainer{
+  display: flex;
+  padding: 0 0 1rem 0;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+} 
+
+.filters{
+  text-align: center;
+  height: 45px;
+  margin-top: 05px;
+  justify-content: right;
+  margin-left: 20px;
+  border-radius: 10px;
+  background-color: #e8e8e8;
+  border: solid 1px white;
+  color: black;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.searchBar{
+  margin-left: 40px;
+  justify-content: right;
+}
+
+.main{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    top: 0;
+    z-index: 999;
+}
 
 .paginate{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnReload{
+  text-align: center;
+  margin-left: 1rem;
+  height: 30px;
+  margin-top: 05px;
+  border-radius: 10px;
+  background-color: #e8e8e8;
+  border: solid 1px white;
+  color: black;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.btnReload:hover{
+  box-shadow: 6px 6px 12px black;
+  border: 1px solid black;
+}
+
+.createAct{
+  text-align: center;
+  padding: 3px 5px 6px 5px;
+  justify-content: center;
+  margin-left: 1rem;
+  height: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: #e8e8e8;
+  border: solid 1px white;
+  color: black;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.createAct:hover{
+  box-shadow: 6px 6px 12px black;
+  border: 1px solid black;
+}
+
+.card{
+  display: flex;
+  flex-wrap: wrap;
+  width: 70vw;
+  justify-content: center; 
+  margin: 1rem 0 ;
+}
+
+.link{
+  color: black;
 }

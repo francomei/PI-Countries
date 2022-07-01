@@ -81,6 +81,7 @@ export function getCountriesByName(name) {
       });
     } catch (error) {
       console.log(error);
+      alert("No exite el pais")
     }
   };
 }

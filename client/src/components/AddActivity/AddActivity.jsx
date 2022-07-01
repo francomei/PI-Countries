@@ -14,7 +14,7 @@ export default function AddActivity() {
     name: "",
     difficulty: "",
     duration: "",
-    season: ["Verano", "Invierno", "Primavera", "Otoño"],
+    season: "",
     countries: [],
   });
 
@@ -37,21 +37,6 @@ export default function AddActivity() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    setError(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-  }
-
-  function handleCheck(e) {
-    if (e.target.checked) {
-      setInput({
-        ...input,
-        season: e.target.value,
-      });
-    }
     setError(
       validate({
         ...input,
@@ -86,7 +71,7 @@ export default function AddActivity() {
       name: "",
       difficulty: "",
       duration: "",
-      season: ["Verano", "Invierno", "Primavera", "Otoño"],
+      season: "",
       countries: [],
     });
     history.push("/home");
@@ -100,98 +85,93 @@ export default function AddActivity() {
     <div className={Styles.all}>
       <h1>Crea tu actividad</h1>
       <form onSubmit={(e) => handleSubmit(e)} className={Styles.form}>
-        <div>
-          <label>Nombre: </label>
-          <input
-            type="text"
-            value={input.name}
-            name="name"
-            placeholder="Nombre de la actividad"
-            onChange={(e) => handleChange(e)}
-          />
-          {error.name && <p>{error.name}</p>}
-        </div>
-        <div>
-          <label>Dificultad: </label>
-          <select
-            value={input.difficulty}
-            name="difficulty"
-            onChange={(e) => handleChange(e)}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          {error.name && <p>{error.name}</p>}
-        </div>
-        <div>
-          <label>Duracion: </label>
-          <select
-            value={input.duration}
-            name="duration"
-            onChange={(e) => handleChange(e)}
-          >
-            <option value="1">1 hora</option>
-            <option value="2">2 horas</option>
-            <option value="3">3 horas</option>
-            <option value="4">4 horas</option>
-            <option value="5">5 horas</option>
-          </select>
-          {error.name && <p>{error.name}</p>}
-        </div>
-        <div>
-          <label>Temporada: </label>
-          <label>
+        <div className={Styles.inputs}>
+          <div className={Styles.name}>
+            <label>Nombre: </label>
             <input
-              type="checkbox"
-              value="Verano"
-              name="Verano"
-              onChange={(e) => handleCheck(e)}
+              className={Styles.input}
+              type="text"
+              value={input.name}
+              name="name"
+              placeholder="Nombre de la actividad"
+              onChange={(e) => handleChange(e)}
             />
-            Verano{" "}
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="Invierno"
-              name="Invierno"
-              onChange={(e) => handleCheck(e)}
-            />
-            Invierno{" "}
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="Otoño"
-              name="Otoño"
-              onChange={(e) => handleCheck(e)}
-            />
-            Otoño{" "}
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="Primavera"
-              name="Primavera"
-              onChange={(e) => handleCheck(e)}
-            />
-            Primavera{" "}
-          </label>
-          {error.name && <p>{error.name}</p>}
+            {error.name && <p>{error.name}</p>}
+          </div>
+          <div className={Styles.difficulty}>
+            <label>Dificultad: </label>
+            <select
+              className={Styles.input}
+              value={input.difficulty}
+              name="difficulty"
+              onChange={(e) => handleChange(e)}
+            >
+              <option selected disabled value="">
+                Dificultad
+              </option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            {error.name && <p>{error.name}</p>}
+          </div>
+          <div className={Styles.duration}>
+            <label>Duracion: </label>
+            <select
+              className={Styles.input}
+              value={input.duration}
+              name="duration"
+              onChange={(e) => handleChange(e)}
+            >
+              <option selected disabled value="">
+                Duration
+              </option>
+              <option value="1">1 hora</option>
+              <option value="2">2 horas</option>
+              <option value="3">3 horas</option>
+              <option value="4">4 horas</option>
+              <option value="5">5 horas</option>
+            </select>
+            {error.name && <p>{error.name}</p>}
+          </div>
+          <div className={Styles.season}>
+            <label>Temporada: </label>
+            <select
+              className={Styles.input}
+              value={input.season}
+              name="season"
+              onChange={(e) => handleChange(e)}
+            >
+              <option selected disabled value="">
+                Season
+              </option>
+              <option value="Verano">Verano</option>
+              <option value="Otoño">Otoño</option>
+              <option value="Invierno">Invierno</option>
+              <option value="Primavera">Primavera</option>
+            </select>
+            {error.name && <p>{error.name}</p>}
+          </div>
+          <div className={Styles.countries}>
+            <label>Paises: </label>
+            <select
+              value={input.countries}
+              className={Styles.countries}
+              onChange={(e) => handleSelect(e)}
+            >
+              <option selected disabled>
+                Select Country
+              </option>
+              {countries.map((country) => (
+                <option value={country.id} key={country.id}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-
-        <select onChange={(e) => handleSelect(e)} className={Styles.countries}>
-          <option selected disabled>
-            Select Country
-          </option>
-          {countries.map((country) => (
-            <option value={country.id} key={country.id}>
-              {country.name}
-            </option>
-          ))}
-        </select>
 
         <div className={Styles.countriesSelected}>
           {input.countries.map((country) => (

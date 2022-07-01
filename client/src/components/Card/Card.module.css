@@ -1,0 +1,28 @@
+.card {
+    border: black solid 1px;
+    border-radius: 20px;
+    width: 220px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    color: black;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.3);  
+  }
+
+  .card:hover {
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    border: 1px solid black;
+  }
+  
+  .card img {
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10%;
+    margin-bottom: 70px;
+  }
