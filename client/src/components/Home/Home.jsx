@@ -23,14 +23,14 @@ export default function Home() {
   const [, setOrden] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  // const [countriesPerPage, setcountriesPerPage] = useState(9);
-  var countriesPerPage = 0;
-  if (currentPage === 1) {
-    countriesPerPage = 9;
-  }
-  if (currentPage >= 2) {
-    countriesPerPage = 10;
-  }
+  const [countriesPerPage, setcountriesPerPage] = useState(10);
+  // var countriesPerPage = 0;
+  // if (currentPage === 1) {
+  //   countriesPerPage = 9;
+  // }
+  // if (currentPage >= 2) {
+  //   countriesPerPage = 10;
+  // }
 
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
@@ -105,6 +105,9 @@ export default function Home() {
             onChange={(e) => handleFilterContinent(e)}
             className={Styles.filters}
           >
+            <option selected disabled value="">
+              Continentes
+            </option>
             <option value="All">Todos</option>
             <option value="Africa">Africa</option>
             <option value="Antarctica">Antartida</option>

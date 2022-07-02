@@ -24,6 +24,7 @@
   justify-content:left;
   align-items: left;
   border: 3px solid black;
+  backdrop-filter: blur(3px);
 }
 
 .activities {
@@ -33,6 +34,7 @@
   border: 3px solid black;
   width: 350px;
   flex-wrap: wrap;
+  backdrop-filter: blur(2px);
 }
 
 .btn {

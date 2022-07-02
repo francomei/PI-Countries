@@ -1,87 +1,141 @@
-.form{
+.form {
   display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-width: 60vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60vw;
+  border: 3px solid black;
 }
 
-.countriesSelected {
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-evenly;
+.form input,
+.form select {
+  border: none;
+  color: #090909;
+  padding: 0.7em 1.7em;
+  margin: 30px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+}
+
+.form label {
+  color: black;
+  text-transform: uppercase;
+  font-size: 18px;
+
 }
 
 .name,
 .difficulty,
 .duration,
 .season,
-.countries{
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-
-.input{
-border:0;
-  border-bottom:2px solid black;  
-  background:transparent;
-  width:100%;
-  padding:8px 0 5px 0;
-  font-size:20px;
-  color:black;
-}
-
-.country{
-width: 47%;
- order: 1;
- margin-top: -4rem;
-}
-
-.country h4 { 
-font-size: 18px;
-margin: 10px;
-}
-
-.submit {
+.countries {
   display: flex;
   justify-content: center;
-  margin: 5px 20px;
-  color: black;
+  align-items: center;
+  width: 100%;
+}
+
+.form input {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.form input:hover,
+.form select:hover {
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px black;
+  border: 1px solid black;
+}
+
+.countriesSelected {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  height: 40px;
-  width: 200px;
+}
+
+
+.input {
+  border: 0;
+  border-bottom: 2px solid black;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 20px;
+  color: black;
+  justify-content: center;
+}
+
+.countries {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+.countries h4 {
+  color: #e8e8e8;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 18px;
+  margin: 10px;
+}
+
+.countries button {
+  height: 35px;
+  width: 35px;
   border: none;
-  border-radius: 7px;
+  color: #090909;
+  padding: 05px;
+  margin: 15px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
   cursor: pointer;
-} 
+}
+
+.countries button:hover {
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  border: 1px solid white;
+}
 
 .submit:hover {
-border: 1px solid black;
+  border: 1px solid black;
 }
 
 .btnHome {
-border: none;
-color: #090909;
-padding: 0.7em 1.7em;
-margin: 30px;
-font-size: 16px;
-height: 40px;
+  border: none;
+  color: #090909;
+  padding: 0.7em 1.7em;
+  margin: 30px;
+  font-size: 16px;
+  height: 40px;
   width: 200px;
-text-transform: uppercase;
-border-radius: 0.5em;
-background: #e8e8e8;
-border: 1px solid #e8e8e8;
-transition: all 0.3s;
-cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .btnHome:hover {
-color: white;
-background-color: black;
-box-shadow: 6px 6px 12px black;
-border: 1px solid black;
+  color: white;
+  background-color: black;
+  box-shadow: 6px 6px 12px black;
+  border: 1px solid black;
+}
+
+.error {
+  color: black;
+  font-weight: 800;
 }

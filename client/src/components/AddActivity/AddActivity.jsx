@@ -20,6 +20,13 @@ export default function AddActivity() {
 
   function validate() {
     let error = {};
+    // if (!input.name.trim()) {
+    //   error.name = "Nombre de actividad es requerido";
+    //   error.error = true;
+    // } else if (!/^[a-z ,.'-]+$/i.test(input.name.trim())) {
+    //   error.name = "Nombre invalido";
+    //   error.error = true;
+    // }
     if (
       !input.name ||
       !input.difficulty ||
@@ -27,7 +34,7 @@ export default function AddActivity() {
       !input.season ||
       !input.countries
     ) {
-      error.name = "Todos los campos son requeridos";
+      error.name = " ** Los Campos deben estar completos";
     }
     return error;
   }
@@ -87,7 +94,9 @@ export default function AddActivity() {
       <form onSubmit={(e) => handleSubmit(e)} className={Styles.form}>
         <div className={Styles.inputs}>
           <div className={Styles.name}>
-            <label>Nombre: </label>
+            <label>
+              <strong>Nombre:</strong>
+            </label>
             <input
               className={Styles.input}
               type="text"
@@ -96,10 +105,12 @@ export default function AddActivity() {
               placeholder="Nombre de la actividad"
               onChange={(e) => handleChange(e)}
             />
-            {error.name && <p>{error.name}</p>}
+            {error.name && <p className={Styles.error}>{error.name}</p>}
           </div>
           <div className={Styles.difficulty}>
-            <label>Dificultad: </label>
+            <label>
+              <strong>Dificultad:</strong>
+            </label>
             <select
               className={Styles.input}
               value={input.difficulty}
@@ -115,10 +126,12 @@ export default function AddActivity() {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            {error.name && <p>{error.name}</p>}
+            {error.name && <p className={Styles.error}>{error.name}</p>}
           </div>
           <div className={Styles.duration}>
-            <label>Duracion: </label>
+            <label>
+              <strong>Duracion:</strong>
+            </label>
             <select
               className={Styles.input}
               value={input.duration}
@@ -134,10 +147,12 @@ export default function AddActivity() {
               <option value="4">4 horas</option>
               <option value="5">5 horas</option>
             </select>
-            {error.name && <p>{error.name}</p>}
+            {error.name && <p className={Styles.error}>{error.name}</p>}
           </div>
           <div className={Styles.season}>
-            <label>Temporada: </label>
+            <label>
+              <strong>Temporada:</strong>
+            </label>
             <select
               className={Styles.input}
               value={input.season}
@@ -152,15 +167,13 @@ export default function AddActivity() {
               <option value="Invierno">Invierno</option>
               <option value="Primavera">Primavera</option>
             </select>
-            {error.name && <p>{error.name}</p>}
+            {error.name && <p className={Styles.error}>{error.name}</p>}
           </div>
           <div className={Styles.countries}>
-            <label>Paises: </label>
-            <select
-              value={input.countries}
-              className={Styles.countries}
-              onChange={(e) => handleSelect(e)}
-            >
+            <label>
+              <strong>Paises:</strong>
+            </label>
+            <select className={Styles.input} value={input.countries} onChange={(e) => handleSelect(e)}>
               <option selected disabled>
                 Select Country
               </option>
@@ -170,6 +183,7 @@ export default function AddActivity() {
                 </option>
               ))}
             </select>
+            {error.name && <p className={Styles.error}>{error.name}</p>}
           </div>
         </div>
 
@@ -180,7 +194,6 @@ export default function AddActivity() {
               <input
                 type="button"
                 onClick={() => handleDelete(country)}
-                className={Styles.btnCrear}
                 value="X"
               />
             </div>
@@ -188,7 +201,7 @@ export default function AddActivity() {
         </div>
 
         <input
-          className={Styles.submit}
+          // className={Styles.submit}
           type="submit"
           value="Crear Actividad"
           disabled={
