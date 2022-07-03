@@ -24,6 +24,14 @@ export default function Home() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage, setcountriesPerPage] = useState(10);
+
+  // const getPrevious = () => {
+  //   setCurrentPage(currentPage - 1);
+  // };
+  // const getNext = () => {
+  //   setCurrentPage(currentPage + 1);
+  // };
+
   // var countriesPerPage = 0;
   // if (currentPage === 1) {
   //   countriesPerPage = 9;
@@ -141,7 +149,7 @@ export default function Home() {
             <option selected disabled value="">
               Actividades
             </option>
-            <option value="All">All</option>
+            {/* <option value="All">All</option> */}
             {activities?.map((act) => {
               return (
                 <option id={act.id} key={act.id} value={act.name}>

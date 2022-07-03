@@ -49,7 +49,7 @@ export default function Detail(props) {
           <button className={Styles.btn}>Volver</button>
         </Link>
         <Link to="/activities">
-          <button className={Styles.btn}>Create Activity</button>
+          <button className={Styles.btn}>Crear Actividad</button>
         </Link>
       </div>
     </div>

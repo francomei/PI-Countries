@@ -139,7 +139,7 @@ export default function AddActivity() {
               onChange={(e) => handleChange(e)}
             >
               <option selected disabled value="">
-                Duration
+                Duracion
               </option>
               <option value="1">1 hora</option>
               <option value="2">2 horas</option>
@@ -160,7 +160,7 @@ export default function AddActivity() {
               onChange={(e) => handleChange(e)}
             >
               <option selected disabled value="">
-                Season
+              Temporada
               </option>
               <option value="Verano">Verano</option>
               <option value="Otoño">Otoño</option>
@@ -174,8 +174,8 @@ export default function AddActivity() {
               <strong>Paises:</strong>
             </label>
             <select className={Styles.input} value={input.countries} onChange={(e) => handleSelect(e)}>
-              <option selected disabled>
-                Select Country
+              <option selected disabled value="">
+                Elegir Pais
               </option>
               {countries.map((country) => (
                 <option value={country.id} key={country.id}>
@@ -215,7 +215,7 @@ export default function AddActivity() {
       </form>
 
       <Link to="/home">
-        <button className={Styles.btnHome}>Volver al Home</button>
+        <button className={Styles.btnHome}>Volver</button>
       </Link>
     </div>
   );
