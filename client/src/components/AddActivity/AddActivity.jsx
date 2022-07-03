@@ -34,7 +34,11 @@ export default function AddActivity() {
       !input.season ||
       !input.countries
     ) {
-      error.name = " ** Los Campos deben estar completos";
+      error.name = " ** Los Campos deben estar completos ** ";
+      error.difficulty = " ** Los Campos deben estar completos ** ";
+      error.duration = " ** Los Campos deben estar completos ** ";
+      error.season = " ** Los Campos deben estar completos ** ";
+      error.countries = " ** Los Campos deben estar completos ** ";
     }
     return error;
   }
@@ -147,7 +151,7 @@ export default function AddActivity() {
               <option value="4">4 horas</option>
               <option value="5">5 horas</option>
             </select>
-            {error.name && <p className={Styles.error}>{error.name}</p>}
+            {error.name && <p className={Styles.error}>{error.duration}</p>}
           </div>
           <div className={Styles.season}>
             <label>
@@ -167,7 +171,7 @@ export default function AddActivity() {
               <option value="Invierno">Invierno</option>
               <option value="Primavera">Primavera</option>
             </select>
-            {error.name && <p className={Styles.error}>{error.name}</p>}
+            {error.name && <p className={Styles.error}>{error.season}</p>}
           </div>
           <div className={Styles.countries}>
             <label>
@@ -183,7 +187,7 @@ export default function AddActivity() {
                 </option>
               ))}
             </select>
-            {error.name && <p className={Styles.error}>{error.name}</p>}
+            {error.name && <p className={Styles.error}>{error.countries}</p>}
           </div>
         </div>
 
