@@ -20,13 +20,6 @@ export default function AddActivity() {
 
   function validate() {
     let error = {};
-    // if (!input.name.trim()) {
-    //   error.name = "Nombre de actividad es requerido";
-    //   error.error = true;
-    // } else if (!/^[a-z ,.'-]+$/i.test(input.name.trim())) {
-    //   error.name = "Nombre invalido";
-    //   error.error = true;
-    // }
     if (
       !input.name ||
       !input.difficulty ||
@@ -34,11 +27,11 @@ export default function AddActivity() {
       !input.season ||
       !input.countries
     ) {
-      error.name = " ** Los Campos deben estar completos ** ";
-      error.difficulty = " ** Los Campos deben estar completos ** ";
-      error.duration = " ** Los Campos deben estar completos ** ";
-      error.season = " ** Los Campos deben estar completos ** ";
-      error.countries = " ** Los Campos deben estar completos ** ";
+      error.name = " ** Completa el nombre ** ";
+      error.difficulty = " ** Elegi una dificultad ** ";
+      error.duration = " ** Elegi una duracion ** ";
+      error.season = " ** Elegi una temporada ** ";
+      error.countries = " ** Elegi uno o varios paises ** ";
     }
     return error;
   }
@@ -74,9 +67,8 @@ export default function AddActivity() {
   }
 
   function handleSubmit(e) {
-    // e.preventDefault();
     dispatch(postActivity(input));
-    console.log(input);
+    // console.log(input);
     alert("Actividad Creada");
     setInput({
       name: "",
@@ -108,6 +100,7 @@ export default function AddActivity() {
               name="name"
               placeholder="Nombre de la actividad"
               onChange={(e) => handleChange(e)}
+              required
             />
             {error.name && <p className={Styles.error}>{error.name}</p>}
           </div>
@@ -120,6 +113,7 @@ export default function AddActivity() {
               value={input.difficulty}
               name="difficulty"
               onChange={(e) => handleChange(e)}
+              required
             >
               <option selected disabled value="">
                 Dificultad
@@ -141,6 +135,7 @@ export default function AddActivity() {
               value={input.duration}
               name="duration"
               onChange={(e) => handleChange(e)}
+              required
             >
               <option selected disabled value="">
                 Duracion
@@ -162,6 +157,7 @@ export default function AddActivity() {
               value={input.season}
               name="season"
               onChange={(e) => handleChange(e)}
+              required
             >
               <option selected disabled value="">
               Temporada

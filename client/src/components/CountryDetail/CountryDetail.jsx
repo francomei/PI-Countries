@@ -20,7 +20,7 @@ export default function Detail(props) {
           <img className={Styles.flag} src={countryDetail.flag} alt="flag" />
           <div className={Styles.countries}>
             <h1>{countryDetail.name}</h1>
-            <h2>ID: {countryDetail.id}</h2>
+            <h2>({countryDetail.id})</h2>
             <h2>Capital: {countryDetail.capital}</h2>
             <h2>Continent: {countryDetail.continent}</h2>
             <h2>Subregion: {countryDetail.subregion}</h2>
@@ -28,11 +28,11 @@ export default function Detail(props) {
             <h2>Poblacion: {countryDetail.population}</h2>
           </div>
           <div className={Styles.activities}>
-            <h2>Actividades:</h2>
+            <h2 className={Styles.nombreactivity}>Actividades:</h2>
             {countryDetail.activities?.map((activity) => {
               return (
                 <div>
-                  <h3>Nombre: {activity.name}</h3>
+                  <h3 className={Styles.aName}>{activity.name}</h3>
                   <h3>Dificultad: {activity.difficulty}</h3>
                   <h3>Duracion: {activity.duration}</h3>
                   <h3>Temporada: {activity.season}</h3>

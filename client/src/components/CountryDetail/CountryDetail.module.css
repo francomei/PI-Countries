@@ -40,6 +40,14 @@
   backdrop-filter: blur(3px);
 }
 
+.nombreactivity {
+  font-size: 35px;
+}
+
+.aName{
+  font-size: 30px;
+}
+
 .btn {
   border: none;
   color: #090909;

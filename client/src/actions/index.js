@@ -13,10 +13,10 @@ export const RESET_DETAIL = "RESET_DETAIL";
 
 export function getAllCountries() {
   return async function (dispatch) {
-    var response = await axios("http://localhost:3001/countries");
+    const reponse = await axios("http://localhost:3001/countries");
     return dispatch({
       type: GET_COUNTRIES,
-      payload: response.data,
+      payload: reponse.data,
     });
   };
 }

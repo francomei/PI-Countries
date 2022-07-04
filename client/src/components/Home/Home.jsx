@@ -23,14 +23,7 @@ export default function Home() {
   const [, setOrden] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [countriesPerPage, setcountriesPerPage] = useState(10);
-
-  // const getPrevious = () => {
-  //   setCurrentPage(currentPage - 1);
-  // };
-  // const getNext = () => {
-  //   setCurrentPage(currentPage + 1);
-  // };
+  const [countriesPerPage,] = useState(10);
 
   // var countriesPerPage = 0;
   // if (currentPage === 1) {
@@ -61,6 +54,7 @@ export default function Home() {
   }, [dispatch]);
 
   function handleClick(e) {
+    setCurrentPage(1);
     e.preventDefault();
     dispatch(getAllCountries());
   }
@@ -149,7 +143,6 @@ export default function Home() {
             <option selected disabled value="">
               Actividades
             </option>
-            {/* <option value="All">All</option> */}
             {activities?.map((act) => {
               return (
                 <option id={act.id} key={act.id} value={act.name}>
