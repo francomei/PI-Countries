@@ -66,15 +66,15 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", (req, res) => {
   const { id } = req.params;
   try {
-    const getCountry = await Country.findByPk(id.toUpperCase(), {
+    return Country.findByPk(id.toUpperCase(), {
       include: {
         model: Activity,
       },
-    });
-    return res.send(getCountry);
+    }).then((country) =>{
+    return res.send(country)})
   } catch (error) {
     console.log(error);
   }
