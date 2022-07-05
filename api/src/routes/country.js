@@ -47,6 +47,7 @@ const getCountries = async () => {
   }
 };
 
+
 router.get("/", async (req, res) => {
   const { name } = req.query;
   const allCountries = await getCountries();
@@ -66,15 +67,15 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    return Country.findByPk(id.toUpperCase(), {
+    const getCountry = await Country.findByPk(id.toUpperCase(), {
       include: {
         model: Activity,
       },
-    }).then((country) =>{
-    return res.send(country)})
+    })
+    return res.send(getCountry)
   } catch (error) {
     console.log(error);
   }
