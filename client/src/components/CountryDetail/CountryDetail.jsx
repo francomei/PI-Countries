@@ -7,6 +7,7 @@ import Styles from "./CountryDetail.module.css";
 export default function Detail(props) {
   const dispatch = useDispatch();
   const countryDetail = useSelector((state) => state.detail);
+  console.log(countryDetail);
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));

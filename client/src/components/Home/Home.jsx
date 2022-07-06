@@ -9,6 +9,7 @@ import {
   filterActivity,
   orderByName,
   orderByPopulation,
+  ordenarCinco
 } from "../../actions";
 import Card from "../Card/Card";
 import Paginado from "../Paginate/Paginate";
@@ -57,6 +58,10 @@ export default function Home() {
     setCurrentPage(1);
     e.preventDefault();
     dispatch(getAllCountries());
+  }
+
+  function ordenar(){
+    dispatch(ordenarCinco())
   }
 
   function handleSort(e) {
@@ -135,6 +140,15 @@ export default function Home() {
             <option value="asc">Ascendente</option>
             <option value="desc">Descendente</option>
           </select>
+
+
+
+
+            <button onClick={(e) => ordenar(e)}>5</button>
+
+
+
+
 
           <select
             onChange={(e) => handleFilterActivity(e)}

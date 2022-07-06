@@ -100,7 +100,6 @@ export default function AddActivity() {
               name="name"
               placeholder="Nombre de la actividad"
               onChange={(e) => handleChange(e)}
-              required
             />
             {error.name && <p className={Styles.error}>{error.name}</p>}
           </div>
@@ -113,7 +112,6 @@ export default function AddActivity() {
               value={input.difficulty}
               name="difficulty"
               onChange={(e) => handleChange(e)}
-              required
             >
               <option selected disabled value="">
                 Dificultad
@@ -124,7 +122,7 @@ export default function AddActivity() {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            {error.name && <p className={Styles.error}>{error.name}</p>}
+            {error.name && <p className={Styles.error}>{error.difficulty}</p>}
           </div>
           <div className={Styles.duration}>
             <label>
@@ -201,7 +199,6 @@ export default function AddActivity() {
         </div>
 
         <input
-          // className={Styles.submit}
           type="submit"
           value="Crear Actividad"
           disabled={
