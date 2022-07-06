@@ -15,7 +15,7 @@ export default function Detail(props) {
 
   return (
     <div className={Styles.detail}>
-      {Object.keys(countryDetail).length ? (
+      {Object.keys(countryDetail).length ? ( 
         <div className={Styles.country}>
           <img className={Styles.flag} src={countryDetail.flag} alt="flag" />
           <div className={Styles.countries}>
