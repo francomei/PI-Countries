@@ -9,7 +9,7 @@ import {
   filterActivity,
   orderByName,
   orderByPopulation,
-  ordenarCinco
+  ordenarCinco,
 } from "../../actions";
 import Card from "../Card/Card";
 import Paginado from "../Paginate/Paginate";
@@ -24,7 +24,7 @@ export default function Home() {
   const [, setOrden] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [countriesPerPage,] = useState(10);
+  const [countriesPerPage] = useState(10);
 
   // var countriesPerPage = 0;
   // if (currentPage === 1) {
@@ -60,8 +60,8 @@ export default function Home() {
     dispatch(getAllCountries());
   }
 
-  function ordenar(){
-    dispatch(ordenarCinco())
+  function ordenar() {
+    dispatch(ordenarCinco());
   }
 
   function handleSort(e) {
@@ -141,14 +141,7 @@ export default function Home() {
             <option value="desc">Descendente</option>
           </select>
 
-
-
-
-            <button onClick={(e) => ordenar(e)}>5</button>
-
-
-
-
+          {/* <button onClick={(e) => ordenar(e)}>5</button> */}
 
           <select
             onChange={(e) => handleFilterActivity(e)}
