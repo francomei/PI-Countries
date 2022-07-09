@@ -179,6 +179,7 @@ export default function Home() {
           );
         })}
       </div>
+      
       <div className={Styles.paginate}>
         <Paginado
           countriesPerPage={countriesPerPage}
