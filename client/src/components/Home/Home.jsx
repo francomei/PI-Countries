@@ -187,6 +187,7 @@ export default function Home() {
           paginate={paginate}
         />
       </div>
+      
     </div>
   );
 }
