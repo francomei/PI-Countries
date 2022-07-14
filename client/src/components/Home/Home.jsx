@@ -60,9 +60,9 @@ export default function Home() {
     dispatch(getAllCountries());
   }
 
-  function ordenar() {
-    dispatch(ordenarCinco());
-  }
+  // function ordenar() {
+  //   dispatch(ordenarCinco());
+  // }
 
   function handleSort(e) {
     e.preventDefault();

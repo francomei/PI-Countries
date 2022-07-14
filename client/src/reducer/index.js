@@ -60,24 +60,23 @@ function rootReducer(state = initialState, action) {
         countries: filterActivities,
       };
 
-    case ORDENAR_CINCO:
-      const orderFive = 
-          state.countries.sort((a, b) => {
-              if (a.name < b.name) {
-                return -1;
-              }
-              if (a.name > b.name) {
-                return 1;
-              }
-              return 0;
-            })
+    // case ORDENAR_CINCO:
+    //   const orderFive = 
+    //       state.countries.sort((a, b) => {
+    //           if (a.name < b.name) {
+    //             return -1;
+    //           }
+    //           if (a.name > b.name) {
+    //             return 1;
+    //           }
+    //           return 0;
+    //         })
 
-      const ordenar = orderFive.slice(0, 5)      
-      return {
-        ...state,
-        countries: ordenar,
-      };
-
+    //   const ordenar = orderFive.slice(0, 5)      
+    //   return {
+    //     ...state,
+    //     countries: ordenar,
+    //   };
 
     case ORDER_BY_NAME:
       const orderByName =

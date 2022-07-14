@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
     await createActivity.addCountries(findCountry);
     // console.log(req.body);
     return res.send("Actividad Creada");
+    
   } catch (error) {
     res.send({ msg: error.message });
   }

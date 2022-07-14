@@ -87,11 +87,11 @@ export function getCountriesByName(name) {
   };
 }
 
-export function ordenarCinco(){
-  return ({
-      type: ORDENAR_CINCO,
-    })
-}
+// export function ordenarCinco(){
+//   return ({
+//       type: ORDENAR_CINCO,
+//     })
+// }
 
 export function getDetail(id) {
   return async function (dispatch) {
